@@ -1,15 +1,25 @@
-class Yaml-Compare < Formula
+require "language/go"
+
+class YamlCompare < Formula
   desc "A command line tool to compare two yaml files"
   homepage "https://github.com/fluktuid/yaml-compare"
-  url "https://github.com/fluktuid/yaml-compare/archive/0.0.0.tar.gz"
-  sha256 "e9ace872c860197d85f7650502ecb30f74c180faddae6ea77b49aeb2a7259e4c"
-  version "0.0.0"
+  url "https://github.com/fluktuid/yaml-compare.git",
+    :tag      => "0.0.3"
+  head "https://github.com/fluktuid/yaml-compare.git"
 
-  depends_on "curl"
+  depends_on "go" => :build
 
   bottle :unneeded
 
   def install
-    bin.install "weather"
+    ENV["GOPATH"] = buildpath
+    
+    # Install Dependencies
+    system "go", "get", "-u", "github.com/logrusorgru/aurora"
+    system "go", "get", "-u", "github.com/spf13/pflag"
+    
+    # Build and install yaml
+    system "go", "build", "-o", "#{bin}/yml"
   end
+
 end
