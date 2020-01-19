@@ -4,7 +4,7 @@ class Percentime < Formula
   desc "A command line tool to dynamically execute a command and track the needed time as percentile."
   homepage "https://github.com/fluktuid/percentime"
   url "https://github.com/fluktuid/percentime.git",
-    :tag      => "0.2.0"
+    :tag      => "0.2.1"
   head "https://github.com/fluktuid/percentime.git"
 
   depends_on "go" => :build
