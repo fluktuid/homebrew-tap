@@ -13,14 +13,16 @@ class Percentime < Formula
 
   def install
     ENV["GOPATH"] = buildpath
-    (buildpath/"src/github.com/fluktuid").mkpath
-    ln_sf buildpath, buildpath/"src/github.com/fluktuid/percentime"
+    dir = buildpath/"src/github.com/fluktuid/percentime"
+    dir.install buildpath.children - [buildpath/".brew_home"]
 
     # Install Dependencies
     system "go", "get", "-u", "github.com/jessevdk/go-flags"
 
-    # Build and install yaml
-    system "go", "build", "-o", "#{bin}/percentime"
+    cd dir do
+      system "go", "build", "-o", "#{bin}/percentime"
+    end
   end
 
 end
+
