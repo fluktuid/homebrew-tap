@@ -9,8 +9,6 @@ class Percentime < Formula
 
   depends_on "go" => :build
 
-  bottle :unneeded
-
   def install
     ENV["GOPATH"] = buildpath
     dir = buildpath/"src/github.com/fluktuid/percentime"
