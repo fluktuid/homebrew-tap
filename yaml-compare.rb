@@ -9,8 +9,6 @@ class YamlCompare < Formula
 
   depends_on "go" => :build
 
-  bottle :unneeded
-
   def install
     ENV["GOPATH"] = buildpath
     
