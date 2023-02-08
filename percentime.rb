@@ -14,9 +14,6 @@ class Percentime < Formula
     dir = buildpath/"src/github.com/fluktuid/percentime"
     dir.install buildpath.children - [buildpath/".brew_home"]
 
-    # Install Dependencies
-    system "go", "get", "-u", "github.com/jessevdk/go-flags"
-
     cd dir do
       system "go", "build", "-o", "#{bin}/percentime"
     end
